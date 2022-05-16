@@ -1,0 +1,19 @@
+
+
+FROM golang:1.17 as builder
+
+WORKDIR /golab
+
+COPY /templates/index.html /golab/templates/index.html
+COPY /lib /golab/lib
+COPY . .
+
+RUN go mod download
+ENV CGO_ENABLED=0
+RUN go build -o build/fizzbuzz
+
+FROM gcr.io/distroless/static-debian11
+COPY --from=builder golab/build/fizzbuzz /fizzbuzz
+COPY --from=0 /golab/templates /templates
+
+CMD [ "/fizzbuzz", "serve" ]
