@@ -1,0 +1,13 @@
+{
+    "name": "server-project",
+    "author": "Ivan Kovalov",
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "A package to work with server",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "express": "^4.18.1"
+    }
+}
